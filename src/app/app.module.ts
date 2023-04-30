@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -14,14 +14,17 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { BankingComponent } from './pages/banking/banking.component';
 import { InsuranceComponent } from './pages/insurance/insurance.component';
-import { AddProductComponent } from './pages/add-product/add-product.component';
 import { DetailsProductComponent } from './pages/details-product/details-product.component';
+import { AddProductInsuranceComponent } from './pages/add-product-insurance/add-product-insurance.component';
+
+import { AddProductBankComponent } from './pages/add-product-bank/add-product-bank.component';
 
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule ,
     HttpClientModule,
     ComponentsModule,
     NgbModule,
@@ -34,8 +37,9 @@ import { DetailsProductComponent } from './pages/details-product/details-product
     AuthLayoutComponent,
     BankingComponent,
     InsuranceComponent,
-    AddProductComponent,
-    DetailsProductComponent
+    DetailsProductComponent,
+    AddProductInsuranceComponent,
+    AddProductBankComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

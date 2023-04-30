@@ -1,0 +1,136 @@
+
+<div class="header bg-gradient-danger py-7 py-lg-8">
+    <div class="container">
+      <div class="header-body text-center mb-7">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6">
+            <h1 class="text-white">ADDING PRODUCT TO Insurance CATALOG</h1>
+            <p class="text-lead text-light">New software on its way to be uploaded to the catalog . </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container mt--8 pb-5">
+    <!-- Table -->
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card bg-secondary shadow border-0">
+  
+          <div class="card-body px-lg-5 py-lg-5">
+  
+            <form novalidate [formGroup]="formvalue" role="form" method="post" enctype="multipart/form-data"  >
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-app"></i></span>
+                  </div>
+                  <input formControlName="name" class="form-control" placeholder="Name" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-building"></i></span>
+                  </div>
+                  
+                  <select formControlName="sector" id="inputState" class="form-control">
+                    <option>Banking</option>
+                    <option>Insurance</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                 
+              <textarea formControlName="description" class="form-control"  rows="3" placeholder="About the new product"></textarea>
+                  
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3">
+                  <div class="input-group is-invalid">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="validatedInputGroupSelect">Version</label>
+                    </div>
+                    <select formControlName="version" class="custom-select" id="validatedInputGroupSelect" required>
+                      <option value="">Choose...</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+            
+                </div>
+              </div>
+              <div class="custom-control custom-control-alternative custom-checkbox">
+                <input formControlName="testStatus" class="custom-control-input" id="test" type="checkbox">
+                <label class="custom-control-label" for="test">
+                  <span class="text-muted" >Tested</span>
+                </label>
+              </div>
+              <br>
+             
+              <h6 class="heading-small text-muted mb-4">Resources</h6>
+            <div class="row">
+              
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      
+                      <label class="custom-toggle"> 
+                        <input type="checkbox" checked=""> 
+                        <span class="custom-toggle-slider rounded-circle"></span> 
+                        
+                      </label> <br><span class="text-muted">Back-End</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    
+                    <div class="form-group">
+                     
+                      <label class="custom-toggle">
+                        <input type="checkbox" checked="">
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                      </label><br><span class="text-muted">Front-End</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="custom-toggle">
+                        <input type="checkbox" checked="">
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                      </label> <br><span class="text-muted">DevOps</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="custom-file mb-3">
+                  <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                  <label class="custom-file-label" for="validatedCustomFile">Choose image preview...</label>
+                  <div class="invalid-feedback">Example invalid custom file feedback</div>
+                </div>
+                <hr class="my-4" />
+              <div class="row my-4">
+                <div class="col-12">
+                  <div class="custom-control custom-control-alternative custom-checkbox">
+                    <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                    <label class="custom-control-label" for="customCheckRegister">
+                      <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" (click)="onSubmit()" class="btn btn-primary mt-4">Upload</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

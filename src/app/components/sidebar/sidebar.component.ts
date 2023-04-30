@@ -7,12 +7,14 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
+const id1=1 ;
+const id2=2 
+
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/banking', title: 'Banking',  icon:'ni ni-money-coins text-yellow', class: '' },
-    { path: '/insurance', title: 'Insurance',  icon:'ni ni-briefcase-24', class: '' },
+    { path: '/dashboard', title: 'Home',  icon: 'ni-tv-2 text-primary', class: '' },
+    { path: `/banking/${id1}`, title: 'Banking',  icon:'ni ni-money-coins text-yellow', class: '' },
+    { path: `/insurance/${id2}`, title: 'Insurance',  icon:'ni ni-briefcase-24', class: '' },
     { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
     { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
 ];

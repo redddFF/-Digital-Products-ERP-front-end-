@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpParams } from '@angular/common/http';
+import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Product } from '../models/product.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,11 +9,14 @@ export class ProductServiceService {
   apiUrl: string = 'http://localhost:8080';
   constructor(private http:HttpClient) { 
   }
-AddProduct(Product:any){
-  return this.http.post(this.apiUrl+'/addProduct',Product) ; 
+AddProduct(id:any,Product:any){
+  var headers = new HttpHeaders({
+    "Content-Type": "application/json","Accept": "application/json"
+}); 
+  return this.http.post(`http://localhost:8080/catalogs/${id}/addProduct`,Product) ; 
 }
 
-listProducts()
+listProducts():Observable<Product>
 {
 return this.http.get(this.apiUrl + '/getProducts') ;
 }
