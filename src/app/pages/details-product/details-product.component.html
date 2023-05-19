@@ -14,51 +14,106 @@
         <br><br><br><br><br>
         <div class="row">
           <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
+            
+            <div class="card card-profile shadow" >
               <div class="card-body pt-0 pt-md-4">
                 <div class="row">
                   <div class="col">
-                    <div class="h1 mt-4 text-center">{{currentProduct.name}}</div>
+
+
+
+
+                    <ul *ngIf="roles.includes('realm-admin')" class="navbar-nav align-items-right d-none d-md-flex">
+                      <li class="nav-item" ngbDropdown placement="bottom-left">
+                        <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+                          <i class="ni ni-settings-gear-65"></i>
+                        </a>
+                        <div routerLinkActive="active" routerLink="/product/{{currentProduct.product_id}}/update" ngbDropdownMenu>
+                          <button (click)="deleteProduct()" class="dropdown-item">
+                            <span>Delete Product</span>
+                          </button>
+                          <button  class="dropdown-item">
+                            <span>Update Product</span>
+                          </button>
+                        </div>
+                      </li>
+                    </ul>
+
+
+
+                    <div class="h1 mt-4 text-center">{{currentProduct.name}} <span  *ngIf="currentProduct.testStatus == 'true' " class="badge badge-success" style="font-size: xx-small;">Tested</span></div>
+                       
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span class="heading">1.5</span>
-                        <span class="description">Version</span>
+                        <span class="heading">
+                          <ng-container *ngFor="let technology of currentProduct.technologies">
+                            <span  *ngIf="technology.type == 'Back-end' " class="badge  badge-danger">{{technology.name}}</span>    
+                          </ng-container>
+                        </span>
+                        <span class="description">BACKEND</span>
                       </div>
                       <div>
-                        <span class="heading">Yes</span>
-                        <span class="description">Tested</span>
+                        <span class="heading">
+                          <ng-container *ngFor="let technology of currentProduct.technologies">
+                            <span  *ngIf="technology.type == 'Front-end' " class="badge  badge-danger">{{technology.name}}</span>    
+                          </ng-container>
+                        </span>
+                        <span class="description">FRONTEND</span>
                       </div>
                       <div>
-                        <span class="heading">89</span>
-                        <span class="description">Downloads</span>
+                        <span class="heading">
+                          <ng-container *ngFor="let technology of currentProduct.technologies">
+                            <span  *ngIf="technology.type == 'Database' " class="badge  badge-danger">{{technology.name}}</span>    
+                          </ng-container>
+                        </span>
+                        <span class="description">DATABASE</span>
                       </div>
                     </div>
+
+                    <hr class="my-4" />
+                    <div class="card-profile-stats d-flex justify-content-center">
+              
+                      <div>
+<h3>Resources</h3>
+                        <span class="heading" >
+                      
+                          <ng-container *ngFor="let resource of currentProduct.resources">
+                          
+                            <span   class="badge badge-pill badge-default">  <i class="ni ni-single-02"></i> {{resource.speciality}}</span>    
+                          </ng-container>
+                        </span>
+                     
+                      </div>
+                  
+                 
+                    </div>
+
+
+
+<div  class="text-center">
+                    <h3 style="align-items: center;">Version <span style="font-weight: lighter;">{{currentProduct.version}}</span> </h3>
+                  </div>
                   </div>
                 </div>
+
+               
+              
                 <div class="text-center">
-                  <h3>
-                    <span class="badge badge-pill badge-danger">Angular Js</span>
-                    <span class="badge badge-pill badge-danger">Spring Boot</span>
-                    <span class="badge badge-pill badge-danger">MySQL</span>
-                    <span class="badge badge-pill badge-danger">Bootstrap</span>
-                    <span class="badge badge-pill badge-danger">Docker</span>
-                    <span class="badge badge-pill badge-danger">Jenkins</span>
-                    <span class="badge badge-pill badge-danger">Kubernetes</span>
-           
-                  </h3>
-        
+               
+                
+                 
                   <hr class="my-4" />
 <p>{{currentProduct.description}}</p>            
-                    <a href="#!" class="btn btn-outline-default">Docs  </a>
-                    <a href="#!" class="btn btn-outline-danger">Live Preview</a>
+                    <a  class="btn btn-outline-default" >Docs  </a>
+                    <a  class="btn btn-outline-danger" (click)="startContainer()">Live Preview</a>
                  
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-8 order-xl-1">
-            <div style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
-                <img src="assets/img/brand/applica.webp" class="d-block w-100" alt="...">
+          <div class="col-xl-8 order-xl-1" >
+            <div style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; border-radius: 20px;">
+                <img src="{{currentProduct.imagePath}}" style="border-radius: 20px;" class="d-block w-100" alt="...">
          
               
             </div>

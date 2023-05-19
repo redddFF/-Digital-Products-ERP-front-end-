@@ -4,7 +4,7 @@
       <div class="header-body text-center mb-7">
         <div class="row justify-content-center">
           <div class="col-lg-5 col-md-6">
-            <h1 class="text-white">ADDING PRODUCT TO BANK CATALOG</h1>
+            <h1 class="text-white">ADDING PRODUCT TO {{currentCatalog.businessLine}} CATALOG</h1>
             <p class="text-lead text-light">New software on its way to be uploaded to the catalog . </p>
           </div>
         </div>
@@ -46,14 +46,11 @@
                 <div class="mb-3">
                   <div class="input-group is-invalid">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="validatedInputGroupSelect">Version</label>
+                      <label class="input-group-text" for="validatedInputGroupSelect" >Version</label>
                     </div>
-                    <select formControlName="version" class="custom-select" id="validatedInputGroupSelect" required>
-                      <option value="">Choose...</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
+                    <input formControlName="version" class="form-control" placeholder="0" step="0.1" type="number" id="validatedInputGroupSelect">
+                    
+                      
                   </div>
             
                 </div>
@@ -133,6 +130,22 @@
                           <option *ngFor="let te of techsDataBase" value="{{te.id}}">{{te.name}}</option>
                         </select>
                       </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-app"></i></span>
+                  </div>
+                  <input formControlName="DockerImageName" class="form-control" placeholder="Docker Image Name" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-app"></i></span>
+                  </div>
+                  <input formControlName="DockerImageTag" class="form-control" placeholder="Docker Image Name" type="text">
                 </div>
               </div>
                 </div>

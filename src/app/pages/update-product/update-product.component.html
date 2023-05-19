@@ -4,8 +4,8 @@
       <div class="header-body text-center mb-7">
         <div class="row justify-content-center">
           <div class="col-lg-5 col-md-6">
-            <h1 class="text-white">ADDING PRODUCT TO Insurance CATALOG</h1>
-            <p class="text-lead text-light">New software on its way to be uploaded to the catalog . </p>
+            <h1 class="text-white">Updating PRODUCT </h1>
+            <p class="text-lead text-light">Product getting updated </p>
           </div>
         </div>
       </div>
@@ -31,25 +31,14 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-app"></i></span>
                   </div>
-                  <input formControlName="name" class="form-control" placeholder="Name" type="text">
+                  <input formControlName="name" class="form-control" placeholder="{{currentProduct.name}}" type="text">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-building"></i></span>
-                  </div>
-                  
-                  <select formControlName="sector" id="inputState" class="form-control">
-                    <option>Banking</option>
-                    <option>Insurance</option>
-                  </select>
-                </div>
-              </div>
+          
               <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                  
-              <textarea formControlName="description" class="form-control"  rows="3" placeholder="About the new product"></textarea>
+              <textarea formControlName="description" class="form-control"  rows="3" placeholder="{{currentProduct.description}}"></textarea>
                   
                 </div>
               </div>
@@ -76,7 +65,8 @@
                 </label>
               </div>
               <br>
-             
+              
+              <hr class="my-4" />
               <h6 class="heading-small text-muted mb-4">Resources</h6>
             <div class="row">
               
@@ -84,18 +74,16 @@
                     <div class="form-group">
                       
                       <label class="custom-toggle"> 
-                        <input type="checkbox" checked=""> 
+                        <input formControlName="resource1" type="checkbox" checked=""> 
                         <span class="custom-toggle-slider rounded-circle"></span> 
                         
                       </label> <br><span class="text-muted">Back-End</span>
                     </div>
                   </div>
                   <div class="col-lg-4">
-                    
                     <div class="form-group">
-                     
                       <label class="custom-toggle">
-                        <input type="checkbox" checked="">
+                        <input formControlName="resource2" type="checkbox" checked="">
                         <span class="custom-toggle-slider rounded-circle"></span>
                       </label><br><span class="text-muted">Front-End</span>
                     </div>
@@ -103,18 +91,59 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="custom-toggle">
-                        <input type="checkbox" checked="">
+                        <input formControlName="resource3" type="checkbox" checked="">
                         <span class="custom-toggle-slider rounded-circle"></span>
                       </label> <br><span class="text-muted">DevOps</span>
                     </div>
                   </div>
                 </div>
+                <hr class="my-4" />
+                <h6 class="heading-small text-muted mb-4">Technologies</h6>
+                
+                <div class="form-group">
+                  <div class="mb-3">
+                    <div class="input-group is-invalid">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="validatedInputGroupSelect">FRONT-END</label>
+                      </div>
+                      <select formControlName="tech1" class="custom-select" id="validatedInputGroupSelect" required>
+                        <option *ngFor="let tech of techsFront" value="{{tech.id}}">{{tech.name}}</option>
+                      </select>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="mb-3">
+                        <div class="input-group is-invalid">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="validatedInputGroupSelect">BACK-END</label>
+                          </div>
+                          <select formControlName="tech2" class="custom-select" id="validatedInputGroupSelect" required>
+                            <option *ngFor="let t of techsBack"  value="{{t.id}}">{{t.name}}</option>
+                          </select>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="mb-3">
+                      <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="validatedInputGroupSelect">DATABASE </label>
+                        </div>
+                        <select formControlName="tech3" class="custom-select" id="validatedInputGroupSelect" required>
+                          <option *ngFor="let te of techsDataBase" value="{{te.id}}">{{te.name}}</option>
+                        </select>
+                      </div>
+                </div>
+              </div>
+                </div>
+               
+                <hr class="my-4" />
                 <div class="custom-file mb-3">
-                  <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                  <input type="file" name="file" (change)="onFileSelected($event)" class="custom-file-input" id="validatedCustomFile" required  >
                   <label class="custom-file-label" for="validatedCustomFile">Choose image preview...</label>
                   <div class="invalid-feedback">Example invalid custom file feedback</div>
                 </div>
-                <hr class="my-4" />
+                
               <div class="row my-4">
                 <div class="col-12">
                   <div class="custom-control custom-control-alternative custom-checkbox">

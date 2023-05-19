@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { KeycloakService } from 'keycloak-angular';
 
 // core components
 
@@ -10,29 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  public datasets: any;
-  public data: any;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
+  constructor(private keycloakService:KeycloakService) {}
+  roles:any ; 
 
   ngOnInit() {
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-
-
-
-  
-
-   
+console.log(this.keycloakService.getKeycloakInstance().token)
   }
-
 
 
 

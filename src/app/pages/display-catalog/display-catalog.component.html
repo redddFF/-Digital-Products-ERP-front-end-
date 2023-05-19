@@ -1,0 +1,82 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <ul *ngIf="roles.includes('realm-admin')" class="navbar-nav d-none d-md-flex" style="position: absolute; top: 0; right: 0;">
+    <li class="nav-item" ngbDropdown placement="bottom-right">
+      <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+        <i class="ni ni-settings-gear-65 text-white"></i>
+      </a>  
+      <div ngbDropdownMenu>
+        <button class="dropdown-item" (click)="deleteCatalog()">
+          <span>Delete Catalog</span>
+        </button>
+        <button class="dropdown-item" routerLinkActive="active" routerLink="/settings/catalogs/{{currentCatalog.catalog_id}}/update-catalog">
+          <span>Update Catalog</span>
+        </button>
+      </div>
+    </li>
+  </ul>
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="container-fluid d-flex align-items-center">
+          <div class="row">
+            
+            <div class="col-lg-7 col-md-10">
+              <h1 class="display-2 text-white">{{currentCatalog.businessLine}} Products</h1>
+              <p class="text-white mt-0 mb-5">Fully coded softwares softwares, dashboards and apps to make your company's job easier . </p>
+            </div>
+           
+            
+  
+           
+          </div>
+          <div *ngIf="roles.includes('realm-admin')" class="my-div" style="position: absolute;top: 90;right: 0; max-width: 200px;" >
+            <a routerLinkActive="active" routerLink="/catalog/{{currentCatalog.catalog_id}}/add-product">
+              <img src="./assets/img/icons/upload.png" style="max-width: 100%; padding: 20px;" alt=""> 
+              <h5 class="text-white " style="text-align: center; text-transform: uppercase;">Upload New Product </h5>
+          </a>
+        </div> 
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    <!-- Page content -->
+    
+    <div class="container-fluid mt--7">
+     
+      <div class="row">
+        <div class="col">
+          
+        
+           
+                <div class="row">
+                  <div class="position-relative" *ngFor="let product of products" style="padding: 10px;">
+                    <div class="card" *ngIf="product.catalog && (product.catalog.catalog_id == currentCatalog.catalog_id || product.catalog == currentCatalog.catalog_id)" style="width: 18rem;min-height: 400px;">
+                  
+                    <img class="card-img-top" src="{{product.imagePath}}" alt="Card image cap" >
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.name}}</h5>
+                      <p class="card-text" style="height: 70px;" >{{product.description}} </p>
+                      <div style="position: absolute;bottom: 0;padding: 20px;">
+                      <a routerLinkActive="active" routerLink="/catalog/{{currentCatalog.catalog_id}}/details-product/{{product.product_id}}" class="btn btn-warning " >More Details</a>
+                    </div>
+                  </div>
+                  </div>
+               
+              </div>
+            
+            </div>
+        
+        </div>
+        
+      </div>
+    </div>
+    
+  
+  
+    
+    <style scoped>
+.my-div:hover {
+  transform: scale(1.1);
+}
+    </style>

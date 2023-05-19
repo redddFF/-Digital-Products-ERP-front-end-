@@ -1,16 +1,16 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component ,OnInit} from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from 'src/app/models/product.model';
+import { CatalogServiceService } from 'src/app/services/catalog-service.service';
 import { ProductServiceService } from 'src/app/services/product-service.service';
+
 @Component({
-  selector: 'app-add-product-bank',
-  templateUrl: './add-product-bank.component.html',
-  styleUrls: ['./add-product-bank.component.scss']
+  selector: 'app-add-product',
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.scss']
 })
-export class AddProductBankComponent implements OnInit{ 
+export class AddProductComponent implements OnInit{ 
   base64String:any ; 
   headers:any ; 
   name:any
@@ -49,10 +49,11 @@ export class AddProductBankComponent implements OnInit{
 
 
   formvalue!:FormGroup
-  constructor(private routes:Router,private formBuilder:FormBuilder,private productService:ProductServiceService,private activatedRoute: ActivatedRoute){}
+  currentCatalog:any ; 
+  constructor(private catalogService :CatalogServiceService, private routes:Router,private formBuilder:FormBuilder,private productService:ProductServiceService,private route: ActivatedRoute){}
 
 ngOnInit(): void {
-  
+  this.loadCatalog()
   this.techsBack = this.technologies.filter(technology => technology.type=='Back-end');
   this.techsFront = this.technologies.filter(technology => technology.type=='Front-end');
   this.techsDataBase = this.technologies.filter(technology => technology.type=='Database');
@@ -69,19 +70,12 @@ ngOnInit(): void {
     tech1  :['',Validators.required], 
     tech2  :['',Validators.required], 
     tech3  :['',Validators.required], 
-  }
+    DockerImageName :['',Validators.required], 
+    DockerImageTag :['',Validators.required]  }
     )
     
 }
-/* product = {
-  name:'',
-  description:'', 
-  version:'' , 
-  testStatus:'',
-  technologiesIds:[],
-  resourcesIds:[],
 
-} */
 
 onFileSelected(event) {
   const file = event.target.files[0];
@@ -93,6 +87,11 @@ onFileSelected(event) {
     this.name= file.name ; 
     this.data= base64String ;
   };
+}
+loadCatalog(){
+  this.catalogService.getCatalog(this.route.snapshot.paramMap.get('id')).subscribe((data :any)=>{
+ this.currentCatalog=data ; 
+  })   
 }
 
 onSubmit(){
@@ -110,6 +109,8 @@ onSubmit(){
     resourcesIds:[] ,
     fileName:this.name,
     data:this.data,  
+    DockerImageName:this.formvalue.value.DockerImageName,
+    DockerImageTag:this.formvalue.value.DockerImageTag
   }
 
   if (this.formvalue.value.resource1 == true)
@@ -141,9 +142,9 @@ onSubmit(){
 
 console.log(product)
 
-    this.productService.AddProduct(1,product).subscribe((data :any)=>{
+    this.productService.AddProduct(this.route.snapshot.paramMap.get('id'),product).subscribe((data :any)=>{
  
-  this.routes.navigate(['/dashboaord']) ;  
+  this.routes.navigate(['/catalog/',this.route.snapshot.paramMap.get('id')]) ;  
 })   
 
 
